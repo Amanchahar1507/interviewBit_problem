@@ -1,0 +1,21 @@
+vector<int> Solution::twoSum(const vector<int> &A, int B) {
+    vector<int>v;
+     int n = A.size();
+    if(n<2){
+        return vector<int> ();
+    }
+   
+    map<int,int>m;
+    for(int i=0;i<n;i++)
+    {
+        if(m.find(B-A[i]) !=m.end()){
+            v.push_back(m[B-A[i]]+1);
+            v.push_back(i+1);
+            return v;
+        }
+        if(m.find(A[i])==m.end()){
+        m[A[i]]=i;
+        }
+    }
+    return v;
+}
