@@ -1,0 +1,44 @@
+vector<vector<int> > Solution::fourSum(vector<int> &A, int B) {
+    vector<vector<int>>v;
+    sort(A.begin(),A.end());
+    int n = A.size();
+    if(A.empty()){
+        return v;
+    }
+    for(int i=0;i<n-3;i++){
+        for(int j=i+1;j<n-2;j++)
+        {
+            int target = B-A[i]-A[j];
+            int f = j+1;
+            int b = n-1;
+            while(f<b){
+                int sum = A[f]+A[b];
+                if(sum<target){
+                    f++;
+                }
+                else if(sum>target){
+                    b--;
+                }
+               else{
+                   vector<int>v1(4,0);
+                    v1[0] = A[i];
+                    v1[1] = A[j];
+                    v1[2] = A[f];
+                    v1[3] = A[b];
+                    v.push_back(v1);
+
+                    while(f<b && A[f] ==v1[2]) ++f;
+                    while(f<b && A[b]== v1[3]) --b;
+               }
+               
+            }
+            while(j+1<n &&A[j]==A[j+1]){
+                j++;
+            }
+        }
+        while(i+1<n &&A[i]==A[i+1]){
+            i++;
+        }
+    }
+    return v;
+}
