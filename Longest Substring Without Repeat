@@ -1,0 +1,13 @@
+int Solution::lengthOfLongestSubstring(string A) {
+    vector<int>v(256,-1);
+    int left=0,right=0;
+    int n = A.size();
+    int len = 0;
+    while(right<n){
+        if(v[A[right]] !=-1) left=max(v[A[right]] +1,left);
+        v[A[right]] = right;
+        len = max(len,right-left+1);
+        right++;
+    }
+    return len;
+}   
