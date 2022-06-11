@@ -1,0 +1,16 @@
+int Solution::solve(string A) {
+    int n = A.size();
+    vector<int>v(26,0);
+    for(int i=0;i<n;i++){
+        v[A[i]-'a']++;
+        
+    }
+    int c=0;
+    for(int i=0;i<v.size();i++){
+        if(v[i]%2){
+            c++;
+        }
+    }
+    if(c>1) return 0;
+    else return 1;
+}
