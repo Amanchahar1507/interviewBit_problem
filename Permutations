@@ -1,0 +1,17 @@
+void permu(int index,vector<int>&A, vector<vector<int>>&ans){
+    if(index == A.size()){
+        ans.push_back(A);
+        return;
+    }
+    for(int i = index;i<A.size();i++){
+        swap(A[index],A[i]);
+        permu(index+1,A,ans);
+        swap(A[index],A[i]);
+    }
+}
+
+vector<vector<int> > Solution::permute(vector<int> &A) {
+    vector<vector<int>>ans;
+    permu(0,A,ans);
+    return ans;
+}
