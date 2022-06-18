@@ -1,0 +1,38 @@
+
+bool ispalindrome(string A, int start, int end){
+    while(start<=end){
+        if(A[start++] != A[end--]){
+            return false;
+        }
+    }
+    return true;
+}
+
+void solve(int index, string A, vector<string>&ds, vector<vector<string>>&ans){
+    if(index == A.size()){
+        ans.push_back(ds);
+        return;
+    }
+    for(int i=index; i<=A.size();i++){
+        if(ispalindrome(A,index,i)){
+            ds.push_back(A.substr(index,i-index+1));
+            solve(i+1,A,ds,ans);
+            ds.pop_back();
+        }
+    }
+}
+vector<vector<string> > Solution::partition(string A) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+   
+   vector<vector<string>>ans;
+   vector<string>ds;
+   solve(0,A,ds,ans);
+   return ans; 
+}
+
+
+
+
