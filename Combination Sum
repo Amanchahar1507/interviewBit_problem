@@ -1,0 +1,31 @@
+void combination(int index, vector<int>&A, int B, vector<int>&ds, vector<vector<int>>&ans){
+    if(index==A.size()){
+    if(B==0){
+        ans.push_back(ds);
+        
+    }
+    return;
+    } 
+    //for(int i=index;i<A.size();i++){
+        
+   if(B>=A[index]){
+       if(A[index]==A[index+1]){
+        ds;
+       }
+       else{
+       ds.push_back(A[index]);
+       combination(index,A,B-A[index],ds,ans);
+       ds.pop_back(); 
+    }
+   }
+    combination(index+1,A,B,ds,ans);
+    
+}
+
+vector<vector<int> > Solution::combinationSum(vector<int> &A, int B) {
+   sort(A.begin(),A.end());
+    vector<vector<int>>ans;
+    vector<int>ds;
+    combination(0,A,B,ds,ans);
+    return ans;
+}
