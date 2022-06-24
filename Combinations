@@ -1,0 +1,19 @@
+void solve(int index, int A, int B, vector<int>&ds, vector<vector<int>>&ans){
+    if(B==0){
+        ans.push_back(ds);
+        return;
+    }
+    for(int i=index; i<=A;i++){
+        ds.push_back(i);
+        solve(i+1,A,B-1,ds,ans);
+        ds.pop_back();
+    }
+}
+
+vector<vector<int> > Solution::combine(int A, int B) {
+    vector<vector<int>>ans;
+    vector<int>ds;
+    solve(1,A,B,ds,ans);
+    return ans;
+    
+}   
