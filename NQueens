@@ -1,0 +1,42 @@
+
+
+void solve(int col, int A,vector<string>&ds, vector<vector<string>>&ans,vector<int>&leftrow,
+vector<int>&lowerdiag, vector<int>&upperdiag){
+    if(col==A){
+        ans.push_back(ds);
+        return;
+    }
+    
+    for(int row=0;row<A;row++){
+       if(leftrow[row]==0 &&lowerdiag[row+col]==0 &&upperdiag[A-1+col-row]==0){
+           ds[row][col] = 'Q';
+           leftrow[row] = 1;
+           lowerdiag[row+col] = 1;
+           upperdiag[A-1+col-row] = 1;
+           solve(col+1,A,ds,ans,leftrow,lowerdiag,upperdiag);
+           ds[row][col] = '.';
+           leftrow[row] = 0;
+           lowerdiag[row+col] = 0;
+           upperdiag[A-1+col-row]=0;
+       } 
+       
+    }
+}
+
+vector<vector<string> > Solution::solveNQueens(int A) {
+    vector<vector<string>>ans;
+    vector<string>ds(A);
+    string s(A,'.');
+    for(int i=0;i<A;i++){
+        ds[i] = s;
+    }
+    vector<int>leftrow(A,0);
+    vector<int>lowerdiag(2*A-1,0);
+    vector<int>upperdiag(2*A-1,0);
+    solve(0,A,ds,ans,leftrow,lowerdiag,upperdiag);
+    return ans;
+}  
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/page
